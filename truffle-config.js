@@ -23,7 +23,11 @@
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 
 // const fs = require('fs');
+<<<<<<< HEAD
 const mnemonic = "kitchen ranch net casino ugly word spatial bonus misery clump shift swap";
+=======
+const mnemonic = "<generate Mnemonic>";
+>>>>>>> 214805f00354166223c1a2a3d021b9583c1de362
 
 module.exports = {
   /**
@@ -62,10 +66,17 @@ module.exports = {
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
     kovan: {
+<<<<<<< HEAD
       provider: () => new HDWalletProvider(mnemonic, `https://kovan.infura.io/v3/aaf4e90508a641dba901e6611ad9d558`),
       network_id: 42,       // Ropsten's id
       gas: 5500000,        // Ropsten has a lower block limit than mainnet
       // confirmations: 2,    // # of confs to wait between deployments. (default: 0)
+=======
+      provider: () => new HDWalletProvider(mnemonic, `https://kovan.infura.io/v3/<APIKEY>`),
+      network_id: 42,       // Ropsten's id
+      gas: 5500000,        // Ropsten has a lower block limit than mainnet
+      confirmations: 2,    // # of confs to wait between deployments. (default: 0)
+>>>>>>> 214805f00354166223c1a2a3d021b9583c1de362
       timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
       skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
     },
@@ -86,7 +97,11 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
+<<<<<<< HEAD
       // version: "0.4.25",    // Fetch exact version from solc-bin (default: truffle's version)
+=======
+      version: "0.4.25",    // Fetch exact version from solc-bin (default: truffle's version)
+>>>>>>> 214805f00354166223c1a2a3d021b9583c1de362
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
       // settings: {          // See the solidity docs for advice about optimization and evmVersion
       //  optimizer: {

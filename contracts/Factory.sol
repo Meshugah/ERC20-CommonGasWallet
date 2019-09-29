@@ -19,7 +19,6 @@ contract ERC20 {
     event Approval(address indexed tokenOwner, address indexed spender, uint tokens);
 }
 
-
 /*
     Generic Receiver Contract
 */
@@ -40,7 +39,6 @@ contract Receiver is Ownable,Pausable {
         // Transfer tokens from this address to the receiver
         return ERC20(tracker).transfer(receiver, amount);
     }
-
 }
 
 /*
