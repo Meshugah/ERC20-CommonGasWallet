@@ -34,7 +34,7 @@ contract Receiver is Ownable,Pausable {
 
     function sendFundsTo( address tracker, uint256 amount, address receiver) public onlyOwner returns ( bool ) {
         // callable only by the owner, not using modifiers to improve readability
-        require(msg.sender == owner);
+        
 
         // Transfer tokens from this address to the receiver
         return ERC20(tracker).transfer(receiver, amount);
@@ -57,8 +57,8 @@ contract Factory is Ownable, Pausable {
         @notice Create a number of receiver contracts
         @param number  - 0-255 
     */
-    function createReceivers( uint8 number ) public {
-        require(msg.sender == owner);
+    function createReceivers( uint8 number ) public onlyOwner{
+        
         // would reach the gaslimit at 41 or so
         require(number <= 38);
 
@@ -78,8 +78,8 @@ contract Factory is Ownable, Pausable {
         @param receiver - Address we're sending tokens to
         @return true if transfer succeeded, false otherwise 
     */
-    function sendFundsFromReceiverTo( uint256 ID, address tracker, uint256 amount, address receiver ) public returns (bool) {
-        require(msg.sender == owner);
+    function sendFundsFromReceiverTo( uint256 ID, address tracker, uint256 amount, address receiver ) public onlyOwner returns (bool) {
+        
         return Receiver( receiversMap[ID] ).sendFundsTo( tracker, amount, receiver);
     }
 
@@ -92,8 +92,8 @@ contract Factory is Ownable, Pausable {
         @param amounts           - array of amounts 
 
     */
-    function batchCollect( address tracker, address receiver, uint256[] memory amounts, address[] memory contractAddresses) public {
-        require(msg.sender == owner);
+    function batchCollect( address tracker, address receiver, uint256[] memory amounts, address[] memory contractAddresses) public onlyOwner{
+        
         require(contractAddresses.length == amounts.length);
 
         for(uint256 i = 0; i < contractAddresses.length; i++) {
