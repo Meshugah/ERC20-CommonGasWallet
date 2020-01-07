@@ -3,3 +3,9 @@ A Smart contract that allows for ERC 20 wallets to be generated and used immedia
 
 
 Everything you need to get started, just include an APIKey for your network in the truffle config file(I used Infura). A mnemonic is also required for this. 
+
+
+Edit: To be done
+- Safemath
+- Ownable without renounce
+- Fat finger errors, if they are still there
