@@ -273,7 +273,7 @@
      address payable public _community = payable(0x03F2d8F9F764112Cd5fca6E7622c0e0Fc2CE8620);
      address payable public depositor;
  
-     string public name     = unicode"💸Kekchain Bridge Vault🔒";
+     string public name     = unicode"💸Interchained Vaults🔒";
      string public symbol   = unicode"🔑";
  
      uint public teamDonationMultiplier = 8000; // 80%
