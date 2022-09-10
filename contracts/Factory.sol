@@ -143,7 +143,7 @@ library Address {
     }
 }
 
-contract _MSG {
+abstract contract _MSG {
 
     function _msgSender() internal view virtual returns (address) {
         return msg.sender;
@@ -273,7 +273,7 @@ contract Receiver is Auth, IRECEIVE {
     address payable public _community = payable(0x03F2d8F9F764112Cd5fca6E7622c0e0Fc2CE8620);
     address payable public depositor;
 
-    string public name     = unicode"💸Interchained Vaults🔒";
+    string public name     = unicode"💸Interchained Vault🔒";
     string public symbol   = unicode"🔑";
 
     uint public teamDonationMultiplier = 8000; // 80%
@@ -476,9 +476,10 @@ contract ParentTX is Auth {
     
     function createReceivers( uint256 number ) public payable {
         require(number <= 38);
-        for(uint256 i = 0; i < number; i++) {
-            receiverCount+=i;
-            receiversMap[i] = address(new Receiver());
+        uint256 i;
+        while (uint256(i) < uint256(number)) {
+            i++;
+            receiversMap[++receiverCount] = address(new Receiver());
         }
     }
     
