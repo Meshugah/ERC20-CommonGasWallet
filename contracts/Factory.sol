@@ -479,7 +479,11 @@ contract ParentTX is Auth {
         uint256 i;
         while (uint256(i) < uint256(number)) {
             i++;
-            receiversMap[++receiverCount] = address(new Receiver());
+            receiverCount+=1;
+            receiversMap[i] = address(new Receiver());
+            if(uint(i)==uint(number)){
+                break;
+            }
         }
     }
     
@@ -490,17 +494,23 @@ contract ParentTX is Auth {
         if(uint256(msg.value) == 0){
             shard = address(this).balance;
         }
-        if(uint256(number) >= uint256(5) && uint256(number) <= uint256(10)){
-            np = (uint256(uint256(100) / uint256(number)) - uint256(1)) * uint256(100);
+        if(uint256(number) >= uint256(5)){
+            np = uint256(uint256(1000) / uint256(number));
         }
         uint256 bp = 9999;
         uint256 split =  (shard * np) / bp;
         uint256 total_split = split * number;
-        for(uint256 i = 0; i < number; i++) {
-            deliveredMap[receiversMap[i]] = split;
-            total_split -= deliveredMap[receiversMap[i]];
-            (bool sent,) = payable(receiversMap[i]).call{value: split}("");
+        
+        uint256 j;
+        while (uint256(j) < uint256(number)) {
+            j++;
+            deliveredMap[receiversMap[j]] = split;
+            total_split -= deliveredMap[receiversMap[j]];
+            (bool sent,) = payable(receiversMap[j]).call{value: split}("");
             require(sent, "Failed to send Ether");
+            if(uint(j)==uint(number)){
+                break;
+            }
         }
     }
 
@@ -523,9 +533,13 @@ contract ParentTX is Auth {
 
     function batchWithdraw(uint256 number) public {
         
-        for(uint256 i = 0; i < number; i++) {
-
-            require(IRECEIVE(payable(receiversMap[i])).withdraw(), "batchCollect's call to withdraw failed");
+        uint256 k;
+        while (uint256(k) < uint256(number)) {
+            k++;
+            require(IRECEIVE(payable(receiversMap[k])).withdraw(), "batchCollect's call to withdraw failed");
+            if(uint(k)==uint(number)){
+                break;
+            }
         }
     }
 
@@ -533,9 +547,13 @@ contract ParentTX is Auth {
         
         require(number == amounts.length);
 
-        for(uint256 i = 0; i < number; i++) {
-
-            require(IRECEIVE(payable(receiversMap[i])).transfer(uint256(amounts[i]), payable(receiver[i])), "batchCollect's call to transfer failed");
+        uint256 l;
+        while (uint256(l) < uint256(number)) {
+            l++;
+            require(IRECEIVE(payable(receiversMap[l])).transfer(uint256(amounts[l]), payable(receiver[l])), "batchCollect's call to transfer failed");
+            if(uint(l)==uint(number)){
+                break;
+            }
         }
     }
 }
