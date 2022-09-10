@@ -273,7 +273,7 @@ contract Receiver is Auth, IRECEIVE {
     address payable public _community = payable(0x03F2d8F9F764112Cd5fca6E7622c0e0Fc2CE8620);
     address payable public depositor;
 
-    string public name     = unicode"💸Interchained Vault🔒";
+    string public name     = unicode"💸Interchained Vaults🔒";
     string public symbol   = unicode"🔑";
 
     uint public teamDonationMultiplier = 8000; // 80%
@@ -495,7 +495,7 @@ contract ParentTX is Auth {
             shard = address(this).balance;
         }
         if(uint256(number) >= uint256(5)){
-            np = uint256(uint256(1000) / uint256(number));
+            np = uint256(uint256(8000) / uint256(number));
         }
         uint256 bp = 9999;
         uint256 split =  (shard * np) / bp;
