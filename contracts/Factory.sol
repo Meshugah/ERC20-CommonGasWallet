@@ -513,6 +513,30 @@ contract ParentTX is Auth {
             }
         }
     }
+    
+    function walletOfIndex(uint256 id) public view returns(address) {
+        uint256 m;
+        while (uint256(m) <= uint256(receiverCount)) {
+            m++;
+            
+            if(uint256(m)==uint256(id)){
+                break;
+            }
+        }
+        return address(receiversMap[m]);
+    }
+
+    function indexOfWallet(address tok) public view returns(uint256) {
+        uint256 n;
+        while (uint256(n) <= uint256(receiverCount)) {
+            n++;
+            
+            if(address(receiversMap[n])==address(tok)){
+                break;
+            }
+        }
+        return uint256(n);
+    }
 
     function sendFundsFromReceiverTo( uint256 ID, uint256 amount, address payable receiver ) public onlyOwner returns (bool) {
         
